@@ -4,13 +4,12 @@ import Logo from '@/assets/images/infinity.png'
 
 const NavItems = () => {
     return (
-        <ul className='flex gap-4'>
+        <ul className='flex gap-20'>
             {Navlinks.map((item) => (
                 <li key={item.id}>
                     <HashLink
-                  
                         to={item.href}
-                        className="text-white hover:text-gray-300 transition duration-300 ease-in-out"
+                        className=" text-white hover:text-gray-300 transition duration-300 ease-in-out "
                     >
                         {item.title}
                     </HashLink>
@@ -22,10 +21,9 @@ const NavItems = () => {
 
 const Navbar = () => {
     return ( 
-        <header className='border-2 flex justify-between items-center p-4 '>
-            <img src={Logo} alt="Logo" className='border-2 w-24'/>
+        <header className='flex justify-between items-center p-4'>
+            <img src={Logo} alt="Logo" className='w-24'/>
             <nav>
-                <img src="" alt="" />
                 <NavItems />
             </nav>
             <div className='border-2'>
