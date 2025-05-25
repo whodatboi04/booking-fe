@@ -1,5 +1,6 @@
 import LandingImage from "@/assets/images/front-image.jpg";
 import { IoIosStar } from "react-icons/io";
+import { PrimaryButton } from '../../../components/Buttons/Button';
 
 const Home = () => {
   return (
@@ -26,7 +27,10 @@ const Home = () => {
           <h1 className="text-6xl">THE BEST LUXURY HOTEL</h1>
           <h1 className="text-6xl">IN MANILA</h1>
         </div>
-        <button>View Rooms</button>
+        <div className="mt-12">
+          <PrimaryButton>View Rooms</PrimaryButton> 
+        </div>
+        
       </div>
     </div>
   );

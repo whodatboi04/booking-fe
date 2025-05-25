@@ -1,6 +1,7 @@
 import { HashLink } from 'react-router-hash-link';
 import { Navlinks } from './Navlinks'
 import Logo from '@/assets/images/infinity.png'
+import { PrimaryButton } from '../Buttons/Button';
 
 const NavItems = () => {
     return (
@@ -26,8 +27,8 @@ const Navbar = () => {
             <nav>
                 <NavItems />
             </nav>
-            <div className='border-2'>
-                <a href="" className='text-white'>Book Now</a>
+            <div className=''>
+                <PrimaryButton>Book Now</PrimaryButton>
             </div>
         </header>
     )
