@@ -6,10 +6,10 @@ import { useBookingContext } from "../../../../contexts/BookingContext";
 import { useNavigate } from "react-router-dom";
 
 const BookingFilter = () => {
-  interface items {
-    id: number;
-    label: string;
-  }
+  // interface items {
+  //   id: number;
+  //   label: string;
+  // }
 
   const { bookings, setBookings } = useBookingContext();
   //Handle input value
@@ -27,10 +27,10 @@ const BookingFilter = () => {
     navigate("/room");
   };
 
-  let now = today(getLocalTimeZone());
-  let disabledRanges = [[now, now]];
+  const now = today(getLocalTimeZone());
+  const disabledRanges = [[now, now]];
 
-  let isDateUnavailable = (date: any) =>
+  const isDateUnavailable = (date: any) =>
     disabledRanges.some(
       (interval) =>
         date.compare(interval[0]) >= 0 && date.compare(interval[1]) <= 0

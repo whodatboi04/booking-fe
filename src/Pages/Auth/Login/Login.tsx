@@ -2,6 +2,7 @@ import { addToast, ToastProvider } from "@heroui/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import LoginBg from "@/assets/images/login-bg.jpg";
 
 import { SyncLoader } from "react-spinners";
 
@@ -49,9 +50,15 @@ const Login: React.FC = () => {
   return (
     <>
       <ToastProvider placement="top-right" toastOffset={60} />
-
-      <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-        <div className="max-w-md w-full bg-white p-8 rounded-lg shadow-md">
+      <div
+        className="h-screen bg-cover bg-no-repeat bg-bottom flex items-center justify-center px-4"
+        style={{
+          backgroundImage: `url(${LoginBg})`,
+          backgroundColor: "rgba(0, 0, 0, 0.4)", // semi-transparent black overlay
+          backgroundBlendMode: "darken",
+        }}
+      >
+        <div className="max-w-md w-full backdrop-blur-lg bg-white/5  p-8 rounded-lg shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
           <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
 
           <form onSubmit={handleSubmit} className="space-y-4">

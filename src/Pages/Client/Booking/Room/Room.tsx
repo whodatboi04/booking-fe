@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useBookingContext } from "../../../../contexts/BookingContext";
 import { Card, CardHeader, CardBody, Image, Input } from "@heroui/react";
 import { Skeleton } from "@heroui/skeleton";
 import { CiSearch } from "react-icons/ci";
@@ -57,6 +56,8 @@ const Room = () => {
       setFething(false);
     }
   };
+
+  // const handleSearch = (e: any, data: string) => ({});
 
   const SearchFilter = () => {
     return (
