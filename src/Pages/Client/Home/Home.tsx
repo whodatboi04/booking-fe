@@ -1,6 +1,5 @@
 import Landing from "./Landing";
 import Amenities from "./Amenities";
-import BookingFilter from "./BookingFilter";
 
 const Home = () => {
   return (
