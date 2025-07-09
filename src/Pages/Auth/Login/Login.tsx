@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginBg from "@/assets/images/login-bg.jpg";
-
+import InfinityLogo from "@/assets/images/infinity.png";
 import { SyncLoader } from "react-spinners";
 
 const Login: React.FC = () => {
@@ -58,22 +58,26 @@ const Login: React.FC = () => {
           backgroundBlendMode: "darken",
         }}
       >
-        <div className="max-w-md w-full backdrop-blur-lg bg-white/5  p-8 rounded-lg shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
-          <h2 className="text-2xl font-bold text-center mb-6">Login</h2>
+        <div className="max-w-md w-full backdrop-blur-lg bg-white/20 px-12 pb-12 rounded-3xl shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
+          <div className="flex flex-col items-center pb-6">
+            {/* <h2 className="text-3xl font-bold text-center">Login</h2> */}
+            <img src={InfinityLogo} className="w-32" />
+            <p className="text-sm font-light text-white text-center">
+              Please enter your details.
+            </p>
+          </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
             <div>
-              <label
-                htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="email" className="block text-sm text-white">
                 Email or Username
               </label>
               <input
                 id="email"
                 type="text"
                 value={email}
+                required
                 onChange={(e) => setEmail(e.target.value)}
                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
@@ -81,10 +85,7 @@ const Login: React.FC = () => {
 
             {/* Password */}
             <div>
-              <label
-                htmlFor="password"
-                className="block text-sm font-medium text-gray-700"
-              >
+              <label htmlFor="password" className="block text-sm text-white">
                 Password
               </label>
               <input
@@ -92,7 +93,7 @@ const Login: React.FC = () => {
                 type="password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                //   required
+                required
                 className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               />
             </div>
