@@ -1,10 +1,12 @@
-import { addToast, ToastProvider } from "@heroui/react";
+import { addToast, Button, Input, ToastProvider } from "@heroui/react";
 import axios from "axios";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoginBg from "@/assets/images/login-bg.jpg";
-import InfinityLogo from "@/assets/images/infinity.png";
-import { SyncLoader } from "react-spinners";
+import InfinityLogo from "@/assets/images/hotel-logo.svg";
+import { Checkbox } from "@heroui/react";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
+import GoogleSVG from "../../../components/Svg/google";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -47,6 +49,9 @@ const Login: React.FC = () => {
     }
   };
 
+  const [isVisible, setIsVisible] = React.useState(false);
+
+  const toggleVisibility = () => setIsVisible(!isVisible);
   return (
     <>
       <ToastProvider placement="top-right" toastOffset={60} />
@@ -58,53 +63,83 @@ const Login: React.FC = () => {
           backgroundBlendMode: "darken",
         }}
       >
-        <div className="max-w-md w-full backdrop-blur-lg bg-white/20 px-12 pb-12 rounded-3xl shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
-          <div className="flex flex-col items-center pb-6">
+        <div className="max-w-md w-full bg-axolotl-100 p-12 rounded-3xl shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
+          <div className="flex flex-col items-center pb-6 gap-2">
             {/* <h2 className="text-3xl font-bold text-center">Login</h2> */}
-            <img src={InfinityLogo} className="w-32" />
-            <p className="text-sm font-light text-white text-center">
+            <img src={InfinityLogo} className="w-40" />
+            <p className="text-sm font-light text-black text-center">
               Please enter your details.
             </p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Email */}
-            <div>
-              <label htmlFor="email" className="block text-sm text-white">
-                Email or Username
-              </label>
-              <input
-                id="email"
-                type="text"
-                value={email}
-                required
-                onChange={(e) => setEmail(e.target.value)}
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
+
+            <Input
+              label="Email"
+              type="email"
+              value={email}
+              isRequired
+              radius="sm"
+              size="sm"
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
             {/* Password */}
-            <div>
-              <label htmlFor="password" className="block text-sm text-white">
-                Password
-              </label>
-              <input
-                id="password"
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-                className="mt-1 w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
+            <Input
+              label="Password"
+              type={isVisible ? "text" : "password"}
+              value={password}
+              isRequired
+              size="sm"
+              radius="sm"
+              onChange={(e) => setPassword(e.target.value)}
+              endContent={
+                <button
+                  aria-label="toggle password visibility"
+                  className="focus:outline-none"
+                  type="button"
+                  onClick={toggleVisibility}
+                >
+                  {isVisible ? (
+                    <FaEyeSlash className="text-lg text-axolotl-300 pointer-events-none" />
+                  ) : (
+                    <FaEye className="text-lg text-axolotl-300  pointer-events-none" />
+                  )}
+                </button>
+              }
+            />
+            {/* Remember me & Forgot Password */}
+            <div className="flex items-center justify-between">
+              <Checkbox size="md">
+                <span className="font-light text-sm">Remember Me</span>
+              </Checkbox>
+              <a
+                className="text-sm text-axolotl-600 hover:text-axolotl-700 active:text-axolotl-600"
+                href=""
+              >
+                Forgot Password?
+              </a>
             </div>
-
             {/* Submit */}
-            <button
+            <Button
               type="submit"
-              className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition duration-200"
+              isLoading={loading}
+              className="w-full gradient-bg text-white rounded-md py-6"
             >
-              {loading ? <SyncLoader color="#ffffff" size={7} /> : "Sign In"}
-            </button>
+              Login
+            </Button>
+
+            {/* Google Auth */}
+            <Button
+              isLoading={loading}
+              fullWidth
+              variant="bordered"
+              className="py-6"
+            >
+              <GoogleSVG className={""} size={22} />
+              <p className="text-sm font-light">Sign In with google</p>
+            </Button>
           </form>
         </div>
       </div>

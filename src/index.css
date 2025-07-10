@@ -18,3 +18,7 @@ body {
 .numberOfPerson div div div button {
   color: white !important;
 }
+
+.gradient-bg {
+  @apply bg-[linear-gradient(90deg,rgba(167,185,157,1)_0%,rgba(135,159,124,1)_19%,rgba(106,131,95,1)_53%,rgba(75,95,67,1)_100%)];
+}
