@@ -1,7 +1,6 @@
-import { DatePicker, Form } from "@heroui/react";
+import { Button, DatePicker, Form } from "@heroui/react";
 import { today, getLocalTimeZone } from "@internationalized/date";
 import { NumberInput } from "@heroui/react";
-import { PrimaryButton } from "../../../../components/Buttons/Button";
 import { useBookingContext } from "../../../../contexts/BookingContext";
 import { useNavigate } from "react-router-dom";
 
@@ -39,7 +38,7 @@ const BookingFilter = () => {
   return (
     <div className="w-full flex justify-center">
       <Form
-        className="h-48 w-[90%] bg-[#131313] shadow-[#A8A07B] shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] flex flex-row justify-center items-center rounded-2xl"
+        className="h-48 w-[90%] bg-[#2E2E2E] shadow-[#A8A07B] shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] flex flex-row justify-center items-center rounded-2xl"
         onSubmit={handleFilterRoom}
       >
         <div className="flex flex-row gap-4 items-center">
@@ -98,7 +97,13 @@ const BookingFilter = () => {
             />
           </div>
           <div>
-            <PrimaryButton type="submit">Search Room</PrimaryButton>
+            <Button
+              type="submit"
+              className="bg-yuma-300 px-10 text-white"
+              radius="sm"
+            >
+              Search Room
+            </Button>
           </div>
         </div>
       </Form>

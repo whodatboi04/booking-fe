@@ -1,10 +1,11 @@
 import { HashLink } from "react-router-hash-link";
 import { Navlinks } from "./Navlinks";
-import Logo from "@/assets/images/infinity.png";
+import Logo from "@/assets/images/hotel-logo.svg";
 import { PrimaryButton } from "../Buttons/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@heroui/react";
 
 const NavItems = () => {
   return (
@@ -60,7 +61,7 @@ const Navbar = () => {
   const fullName = `${user?.firstname ?? ""} ${user?.lastname ?? ""}`;
 
   return (
-    <header className="max-w-full flex justify-between items-center py-4 px-12">
+    <header className="max-w-full flex justify-between items-center py-8 px-12">
       <img src={Logo} alt="Logo" className="w-24" />
       <nav>
         <NavItems />
@@ -71,9 +72,13 @@ const Navbar = () => {
             {fullName ?? <div className="w-full"></div>}
           </div>
         ) : (
-          <PrimaryButton onClick={() => navigate("/login")}>
-            Book Now
-          </PrimaryButton>
+          <Button
+            onPress={() => navigate("/login")}
+            className="bg-yuma-300 px-10"
+            radius="sm"
+          >
+            <span className="text-white">Book Now</span>
+          </Button>
         )}
       </div>
     </header>

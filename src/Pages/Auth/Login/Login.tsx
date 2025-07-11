@@ -102,9 +102,9 @@ const Login: React.FC = () => {
                   onClick={toggleVisibility}
                 >
                   {isVisible ? (
-                    <FaEyeSlash className="text-lg text-axolotl-300 pointer-events-none" />
+                    <FaEyeSlash className="text-lg text-yuma-300 pointer-events-none" />
                   ) : (
-                    <FaEye className="text-lg text-axolotl-300  pointer-events-none" />
+                    <FaEye className="text-lg text-yuma-300  pointer-events-none" />
                   )}
                 </button>
               }
@@ -115,7 +115,7 @@ const Login: React.FC = () => {
                 <span className="font-light text-sm">Remember Me</span>
               </Checkbox>
               <a
-                className="text-sm text-axolotl-600 hover:text-axolotl-700 active:text-axolotl-600"
+                className="text-sm text-yuma-600 hover:text-yuma-700 active:text-yuma-600"
                 href=""
               >
                 Forgot Password?

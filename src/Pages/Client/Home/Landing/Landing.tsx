@@ -1,7 +1,7 @@
 import LandingImage from "@/assets/images/front-image.jpg";
 import { IoIosStar } from "react-icons/io";
-import { PrimaryButton } from "../../../../components/Buttons/Button";
 import BookingFilter from "../BookingFilter";
+import { Button } from "@heroui/react";
 const Landing = () => {
   return (
     <>
@@ -27,7 +27,9 @@ const Landing = () => {
             <h1 className="text-6xl">IN MANILA</h1>
           </div>
           <div className="mt-12">
-            <PrimaryButton>View Rooms</PrimaryButton>
+            <Button className="bg-yuma-300 px-10 text-white" radius="sm">
+              View Rooms
+            </Button>
           </div>
         </div>
         <BookingFilter />

@@ -20,5 +20,11 @@ body {
 }
 
 .gradient-bg {
-  @apply bg-[linear-gradient(90deg,rgba(167,185,157,1)_0%,rgba(135,159,124,1)_19%,rgba(106,131,95,1)_53%,rgba(75,95,67,1)_100%)];
+  background: linear-gradient(
+    90deg,
+    rgba(215, 209, 176, 1) 0%,
+    rgba(201, 192, 150, 1) 19%,
+    rgba(179, 163, 108, 1) 53%,
+    rgba(179, 163, 108, 1) 100%
+  );
 }
