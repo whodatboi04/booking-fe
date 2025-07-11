@@ -1,4 +1,4 @@
-import React from "react";
+
 import { FaCar, FaSwimmingPool, FaWifi } from "react-icons/fa";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { IoFlowerSharp } from "react-icons/io5";
