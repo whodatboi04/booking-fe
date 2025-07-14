@@ -1,7 +1,6 @@
 import { Swiper, SwiperSlide } from "swiper/react";
-import "swiper/css";
-import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
+import "../../../../App.css";
 import { Button, Card, CardFooter, Image, Skeleton } from "@heroui/react";
 import { useState, useEffect } from "react";
 import axios from "axios";
