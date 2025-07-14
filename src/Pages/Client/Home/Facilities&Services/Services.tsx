@@ -1,4 +1,3 @@
-
 import { FaCar, FaSwimmingPool, FaWifi } from "react-icons/fa";
 import { GiForkKnifeSpoon } from "react-icons/gi";
 import { IoFlowerSharp } from "react-icons/io5";
@@ -50,7 +49,7 @@ const Services = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center gap-10 mt-20">
+    <div className="flex flex-col items-center gap-10 m-20">
       <div className="w-1/2 text-center flex flex-col gap-4">
         <h1 className="text-5xl font-light">Facilities & Services</h1>
         <p className="text-base font-light">

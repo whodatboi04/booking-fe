@@ -9,10 +9,14 @@ import { formatToPeso } from "../../../../helpers/formatToPeso";
 const RoomSkeleton = () => {
   return (
     <>
-      <div className="flex gap-8">
-        {[...Array(4)].map((_, i) => (
-          <Card key={i} className="w-80 h-80 space-y-5 p-4 gap-10" radius="lg">
-            <Skeleton className="rounded-lg">
+      <div className="flex h-[30rem] mt-10 justify-center gap-6">
+        {[...Array(3)].map((_, i) => (
+          <Card
+            key={i}
+            className="w-[28rem] h-full space-y-5 p-4 gap-10"
+            radius="lg"
+          >
+            <Skeleton className="rounded-lg h-64">
               <div className="h-40 rounded-lg bg-default-300" />
             </Skeleton>
             <div className="space-y-3">
@@ -78,23 +82,21 @@ const Room = () => {
     fetchRoomTypes();
   }, []);
   return (
-    <div className="border-2 h-[47.5rem]">
+    <div className="h-[47.5rem]">
       <div className="absolute left-0 h-[47.5rem] bg-[#2E2E2E] w-full flex justify-center py-20 px-15">
         <div className="w-[1440px]">
+          <div className="w-1/2 text-center m-auto flex flex-col gap-4">
+            <h1 className="text-white font-light text-5xl">Rooms & Suites</h1>
+            <p className="text-gray-300 font-light text-base">
+              Modern comfort meets quiet luxury. From cozy deluxe rooms to our
+              signature Infinity Suite, each space is designed for rest, style,
+              and stunning views.
+            </p>
+          </div>
           {fetching ? (
             <RoomSkeleton />
           ) : (
             <>
-              <div className="w-1/2 text-center m-auto flex flex-col gap-4">
-                <h1 className="text-white font-light text-5xl">
-                  Rooms & Suites
-                </h1>
-                <p className="text-gray-300 font-light text-base">
-                  Modern comfort meets quiet luxury. From cozy deluxe rooms to
-                  our signature Infinity Suite, each space is designed for rest,
-                  style, and stunning views.
-                </p>
-              </div>
               <Swiper
                 spaceBetween={30}
                 pagination={{
