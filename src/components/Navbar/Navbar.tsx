@@ -1,7 +1,6 @@
 import { HashLink } from "react-router-hash-link";
 import { Navlinks } from "./Navlinks";
 import Logo from "@/assets/images/hotel-logo.svg";
-import { PrimaryButton } from "../Buttons/Button";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
