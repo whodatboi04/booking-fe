@@ -33,8 +33,32 @@ const RoomSkeleton = () => {
   );
 };
 
+const tempRooms = [
+  {
+    id: 1,
+    roomImg:
+      "https://i.pinimg.com/1200x/ad/6b/a7/ad6ba7bf5446d0acbc39adb41cbc94c9.jpg",
+    name: "Deluxe Room",
+    price: "10000",
+  },
+  {
+    id: 2,
+    roomImg:
+      "https://i.pinimg.com/736x/6d/0e/3a/6d0e3ac0335111f16761088900ba5849.jpg",
+    name: "Executive",
+    price: "25000",
+  },
+  {
+    id: 3,
+    roomImg:
+      "https://i.pinimg.com/1200x/28/87/c7/2887c7d04b90efaa1888d92592cd197e.jpg",
+    name: "Deluxe Room",
+    price: "20000",
+  },
+];
+
 const Room = () => {
-  const [rooms, setRooms] = useState<any>();
+  const [rooms, setRooms] = useState<any>(tempRooms);
   const [fetching, setFething] = useState<boolean>(false);
 
   const fetchRoomTypes = async () => {
@@ -55,7 +79,7 @@ const Room = () => {
   }, []);
   return (
     <div className="border-2 h-[47.5rem]">
-      <div className="absolute left-0 bg-[#2E2E2E] w-full flex justify-center py-20 px-15">
+      <div className="absolute left-0 h-[47.5rem] bg-[#2E2E2E] w-full flex justify-center py-20 px-15">
         <div className="w-[1440px]">
           {fetching ? (
             <RoomSkeleton />
