@@ -3,8 +3,8 @@ import { Pagination } from "swiper/modules";
 import "../../../../App.css";
 import { Button, Card, CardFooter, Image, Skeleton } from "@heroui/react";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { formatToPeso } from "../../../../helpers/formatToPeso";
+import { getRoomTypes } from "../../../../Services/apiRequest";
 
 const RoomSkeleton = () => {
   return (
@@ -68,9 +68,8 @@ const Room = () => {
   const fetchRoomTypes = async () => {
     setFething(true);
     try {
-      const apiUrl = "http://192.168.123.147:8080/api/v1/room-types";
-      const response = await axios(apiUrl);
-      setRooms(response.data.data);
+      const response = await getRoomTypes();
+      setRooms(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -117,15 +116,23 @@ const Room = () => {
                     spaceBetween: 50,
                   },
                 }}
-                className="mt-10"
+                className="mt-10 w-full max-w-96 md:max-w-3xl lg:max-w-full"
               >
-                {rooms &&
+                {rooms.length > 0 ? (
                   rooms.map((room: any) => (
                     <SwiperSlide key={room.id}>
-                      <Card isFooterBlurred className="border-none" radius="lg">
+                      <Card
+                        isFooterBlurred
+                        className="border-none aspect-[10/11]"
+                        radius="lg"
+                      >
                         <Image
                           alt="Woman listing to music"
-                          src="https://heroui.com/images/hero-card.jpeg"
+                          className="aspect-[8/9] object-cover"
+                          src={
+                            room.room_image ||
+                            "https://heroui.com/images/hero-card.jpeg"
+                          }
                         />
                         <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-lg bottom-1 w-[calc(100%_-_8px)] shadow-sm ml-1 z-10">
                           <p className="text-tiny text-white/80">{room.name}</p>
@@ -141,7 +148,10 @@ const Room = () => {
                         </CardFooter>
                       </Card>
                     </SwiperSlide>
-                  ))}
+                  ))
+                ) : (
+                  <div>"no data"</div>
+                )}
               </Swiper>
             </>
           )}
