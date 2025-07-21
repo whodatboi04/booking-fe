@@ -4,7 +4,7 @@ import Logo from "@/assets/images/hotel-logo.svg";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { Button, divider, toggle } from "@heroui/react";
+import { Button } from "@heroui/react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import {
   FaFacebook,
