@@ -49,16 +49,18 @@ const Services = () => {
     },
   ];
   return (
-    <div className="flex flex-col items-center gap-10 m-20">
-      <div className="w-1/2 text-center flex flex-col gap-4">
-        <h1 className="text-5xl font-light">Facilities & Services</h1>
-        <p className="text-base font-light">
+    <div className="flex flex-col items-center gap-10 m-20 w-full p-4">
+      <div className="w-full text-center flex flex-col gap-4  lg:w-1/2 ">
+        <h1 className="text-3xl lg:text-5xl font-light">
+          Facilities & Services
+        </h1>
+        <p className="text-sm font-light lg:text-base">
           Enjoy world-class amenities, including a rooftop pool, full-service
           spa, fitness center, and 24/7 concierge — all tailored for your
           comfort and convenience.
         </p>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid  gap-4 lg:grid-cols-3">
         {services.map((service: any) => (
           <div key={service.id}>
             <div className="flex items-center gap-4">

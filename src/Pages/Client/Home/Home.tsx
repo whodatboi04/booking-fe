@@ -10,16 +10,14 @@ const Home = () => {
   return (
     <div>
       <BookingContextProvider>
-        <section className="max-w-screen flex flex-col items-center">
-          <div className="w-[1440px]">
-            <Landing />
-            <About />
-            <Location />
-            <Room />
-            <Services />
-          </div>
-          <Footer />
+        <section className="max-w-7xl mx-auto flex flex-col items-center">
+          <Landing />
+          <About />
+          <Location />
+          <Room />
+          <Services />
         </section>
+        <Footer />
       </BookingContextProvider>
     </div>
   );

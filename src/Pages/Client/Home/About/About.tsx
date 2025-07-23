@@ -3,16 +3,20 @@ import RoomPhoto2 from "@/assets/images/front-hotel-room-2.jpg";
 
 const About = () => {
   return (
-    <div className=" mt-20 flex gap-8">
-      <div className="flex gap-6 w-[50%] justify-center">
-        <div className="h-[25]">
-          <img src={RoomPhoto} className="w-80 h-full" alt="" />
+    <div className="flex flex-col-reverse mt-20 lg:mt-15 p-5 lg:flex-row lg:py-24 gap-8">
+      <div className="flex flex-col w-full gap-4 lg:flex-row lg:gap-6 justify-center">
+        <div className="h-[25rem] border-2">
+          <img src={RoomPhoto} className="w-full lg:w-80 h-full" alt="" />
         </div>
         <div className="h-[25rem]">
-          <img src={RoomPhoto2} className="w-80 h-full mt-16" alt="" />
+          <img
+            src={RoomPhoto2}
+            className="w-full lg:w-80 h-full lg:mt-16"
+            alt=""
+          />
         </div>
       </div>
-      <div className="w-[50%] flex items-center">
+      <div className="w-full flex items-center">
         <div className="flex flex-col gap-6">
           <h3 className="font-light text-2xl text-gray-500">Welcome to</h3>
           <h1 className="text-5xl">Infinity Hotel</h1>

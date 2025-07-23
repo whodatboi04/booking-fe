@@ -81,12 +81,14 @@ const Room = () => {
     fetchRoomTypes();
   }, []);
   return (
-    <div className="h-[47.5rem]">
-      <div className="absolute left-0 h-[47.5rem] bg-[#2E2E2E] w-full flex justify-center py-20 px-15">
-        <div className="w-[1440px]">
-          <div className="w-1/2 text-center m-auto flex flex-col gap-4">
-            <h1 className="text-white font-light text-5xl">Rooms & Suites</h1>
-            <p className="text-gray-300 font-light text-base">
+    <div className="lg:h-[47rem] w-full">
+      <div className="bg-[#2E2E2E] w-full flex justify-center py-20 px-15 lg:absolute lg:left-0 ">
+        <div className="w-full">
+          <div className="text-center m-auto flex flex-col gap-4 lg:w-1/2">
+            <h1 className="text-white font-light text-2xl lg:text-5xl">
+              Rooms & Suites
+            </h1>
+            <p className="text-gray-300 font-light text-sm lg:text-base">
               Modern comfort meets quiet luxury. From cozy deluxe rooms to our
               signature Infinity Suite, each space is designed for rest, style,
               and stunning views.
@@ -116,7 +118,7 @@ const Room = () => {
                     spaceBetween: 50,
                   },
                 }}
-                className="mt-10 w-full max-w-96 md:max-w-3xl lg:max-w-full"
+                className="mt-10 w-full max-w-80 md:max-w-3xl lg:max-w-7xl "
               >
                 {rooms.length > 0 ? (
                   rooms.map((room: any) => (

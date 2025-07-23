@@ -106,32 +106,33 @@ const Navbar = () => {
           <button onClick={toggleMenu}>
             {!isOpen && <GiHamburgerMenu size={20} />}
           </button>
-
-          {isOpen && (
-            <div className="fixed bg-white top-0 left-0 w-screen h-screen overflow-hidden z-30 lg:hidden">
-              <div className=" flex justify-between py-8 px-8">
-                <img src={Logo} alt="Logo" className="w-10" />
-                <h1 className="text-2xl text-black font-bold">INFINITY</h1>
-                <button onClick={toggleMenu}>
-                  {isOpen && <FaTimes size={20} className="text-yuma-500" />}
-                </button>
-              </div>
-              <div className="flex flex-col">
-                <NavItems />
-              </div>
-              <div className="text-black flex justify-center gap-4 p-5">
-                <FaFacebook size={20} />
-                <FaInstagramSquare size={20} />
-                <FaXTwitter size={20} />
-                <FaYoutube size={20} />
-              </div>
-              <div className="flex justify-center">
-                <BookButton />
-              </div>
-            </div>
-          )}
         </div>
       </div>
+      {isOpen && (
+        <div className="fixed bg-white top-0 left-0 w-screen h-screen overflow-hidden z-50 lg:hidden">
+          <div className="w-full h-full">
+            <div className=" flex justify-between py-8 px-8">
+              <img src={Logo} alt="Logo" className="w-10" />
+              <h1 className="text-2xl text-black font-bold">INFINITY</h1>
+              <button onClick={toggleMenu}>
+                {isOpen && <FaTimes size={20} className="text-yuma-500" />}
+              </button>
+            </div>
+            <div className="flex flex-col">
+              <NavItems />
+            </div>
+            <div className="text-black flex justify-center text-xl gap-4 p-5">
+              <FaFacebook />
+              <FaInstagramSquare />
+              <FaXTwitter />
+              <FaYoutube />
+            </div>
+            <div className="flex justify-center">
+              <BookButton />
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="hidden lg:flex">
         <BookButton />

@@ -4,8 +4,8 @@ import { IoIosStar } from "react-icons/io";
 
 const Footer = () => {
   return (
-    <div className="h-96 w-full bg-[#2E2E2E] flex flex-col justify-between">
-      <div className="flex justify-around items-center text-white h-full">
+    <div className="w-full flex flex-col justify-between">
+      <div className="bg-[#2E2E2E] flex flex-col items-center gap-16 text-white py-20 lg:gap-0 lg:justify-around lg:flex-row">
         <div className="flex flex-col gap-2 w-72 text-center">
           <h1 className="text-lg">Address</h1>
           <p className="text-tiny text-light">

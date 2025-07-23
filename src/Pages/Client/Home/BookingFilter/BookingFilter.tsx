@@ -38,14 +38,14 @@ const BookingFilter = () => {
   return (
     <div className="w-full flex justify-center">
       <Form
-        className="h-48 w-[90%] bg-[#2E2E2E] shadow-[#A8A07B] shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] flex flex-row justify-center items-center rounded-2xl"
+        className="w-[90%] bg-[#2E2E2E] shadow-[#A8A07B] shadow-[0px_10px_1px_rgba(221,_221,_221,_1),_0_10px_20px_rgba(204,_204,_204,_1)] items-center p-10 rounded-2xl"
         onSubmit={handleFilterRoom}
       >
-        <div className="flex flex-row gap-4 items-center">
-          <div className="flex flex-row gap-4 text-white">
+        <div className="flex flex-col lg:flex-row gap-4 items-center">
+          <div className="flex flex-col lg:flex-row gap-4 text-white">
             <div className="h-24 flex items-center pr-4">
               <DatePicker
-                className="w-48 filter_date"
+                className=" w-20 lg:w-48 filter_date"
                 aria-label="Appointment date"
                 isDateUnavailable={isDateUnavailable}
                 label="Start date"
@@ -81,9 +81,9 @@ const BookingFilter = () => {
             </div>
           </div>
 
-          <div className="h-24 flex items-center  pr-4">
+          <div className="h-24 flex items-center pr-4">
             <NumberInput
-              className="numberOfPerson max-w-xs"
+              className="numberOfPerson max-w-xs w-48"
               variant="underlined"
               isRequired
               label="Number of Person"
