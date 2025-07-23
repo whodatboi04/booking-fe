@@ -45,7 +45,7 @@ const BookingFilter = () => {
           <div className="flex flex-col lg:flex-row gap-4 text-white">
             <div className="h-24 flex items-center pr-4">
               <DatePicker
-                className=" w-20 lg:w-48 filter_date"
+                className="lg:w-48 filter_date"
                 aria-label="Appointment date"
                 isDateUnavailable={isDateUnavailable}
                 label="Start date"
