@@ -60,14 +60,16 @@ const Services = () => {
           comfort and convenience.
         </p>
       </div>
-      <div className="grid  gap-4 lg:grid-cols-3">
+      <div className="grid gap-4 lg:grid-cols-3">
         {services.map((service: any) => (
-          <div key={service.id}>
+          <div key={service.id} className="px-4">
             <div className="flex items-center gap-4">
               <div>{service.logo}</div>
               <div className="flex flex-col gap-2 p-5">
-                <div className="text-2xl font-light ">{service.title}</div>
-                <div className="font-light text-gray-700">
+                <div className="text-lg lg:text-2xl lg:font-light ">
+                  {service.title}
+                </div>
+                <div className="text-sm text-gray-700 lg:font-light">
                   {service.description}
                 </div>
               </div>
