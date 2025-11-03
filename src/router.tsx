@@ -3,8 +3,8 @@ import Login from "./Pages/Auth/Login";
 import Home from "./Pages/Client/Home";
 import Room from "./Pages/Client/Booking/Room/Room";
 import { ClientLayout } from "./Pages/Client/ClientLayout";
-import BookingForm from "./Pages/Client/Booking/BookingForm";
 import AdminLogin from "./Pages/Auth/AdminLogin/AdminLogin";
+import Booking from "./Pages/Client/Booking/BookingForm";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +23,7 @@ const router = createBrowserRouter([
 
       {
         path: "/booking",
-        element: <BookingForm />,
+        element: <Booking />,
       },
     ],
   },
