@@ -6,17 +6,22 @@ export const Navlinks = [
   },
   {
     id: 2,
-    title: "FACILITIES & AMENITIES",
-    href: "#facilities",
+    title: "ABOUT",
+    href: "#about",
   },
   {
     id: 3,
-    title: "DINING",
+    title: "LOCATION & MAPS",
     href: "#dining",
   },
   {
     id: 4,
-    title: "CONTACTS",
+    title: "ROOMS & SUITES",
     href: "#contacts",
+  },
+  {
+    id: 5,
+    title: "FACILITIES & SERVICES",
+    href: "#services",
   },
 ];

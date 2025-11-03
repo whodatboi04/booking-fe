@@ -13,6 +13,8 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
+import config from "../../config/app.config";
+import Cookies from "js-cookie";
 
 const NavItems = () => {
   return (
@@ -38,8 +40,8 @@ const BookButton = () => {
 
   const fetchUser = async () => {
     try {
-      const apiUrl = "http://192.168.123.147:8080/api/auth/getUser";
-      const token = localStorage.getItem("token");
+      const apiUrl = config.apiUrl + "/auth/getUser";
+      const token = Cookies.get("token");
 
       if (token) {
         setUserToken(token);
@@ -52,13 +54,13 @@ const BookButton = () => {
       } else {
         return;
       }
-    } catch (error) {
-      console.log(error);
+    } catch (error: any) {
+      console.log(error.response.data.error);
     }
   };
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = Cookies.get("token");
     if (token) {
       fetchUser();
     }

@@ -7,6 +7,8 @@ import InfinityLogo from "@/assets/images/hotel-logo.svg";
 import { Checkbox } from "@heroui/react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import GoogleSVG from "../../../components/Svg/google";
+import config from "../../../config/app.config";
+import Cookies from "js-cookie";
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -18,13 +20,17 @@ const Login: React.FC = () => {
     e.preventDefault();
     http: try {
       setLoading(true);
-      const apiUrl = "http://192.168.123.147:8080/api/auth/login";
-      const response = await axios.post(apiUrl, {
-        email,
-        password,
-      });
-      console.log(response);
-      localStorage.setItem("token", response.data.data.access_token);
+      const response = await axios.post(
+        config.apiUrl + "/auth/login",
+        { email, password },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      Cookies.set("token", response.data.data.access_token);
       addToast({
         title: "Login Success",
         description: response.data.message,
@@ -32,6 +38,7 @@ const Login: React.FC = () => {
         timeout: 3000,
         shouldShowTimeoutProgress: true,
       });
+
       setTimeout(() => {
         navigate("/");
       }, 1000);
@@ -58,13 +65,12 @@ const Login: React.FC = () => {
         className="h-screen bg-cover bg-no-repeat bg-bottom flex items-center justify-center px-4"
         style={{
           backgroundImage: `url(${LoginBg})`,
-          backgroundColor: "rgba(0, 0, 0, 0.4)", // semi-transparent black overlay
+          backgroundColor: "rgba(0, 0, 0, 0.4)",
           backgroundBlendMode: "darken",
         }}
       >
         <div className="max-w-md w-full bg-axolotl-100 p-12 rounded-3xl shadow-[11px_20px_15px_0px_rgba(0,_0,_0,_0.8)]">
           <div className="flex flex-col items-center pb-6 gap-2">
-            {/* <h2 className="text-3xl font-bold text-center">Login</h2> */}
             <img src={InfinityLogo} className="w-40" />
             <p className="text-sm font-light text-black text-center">
               Please enter your details.

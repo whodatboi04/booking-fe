@@ -1,9 +1,9 @@
 import axios from "axios";
+import config from "../config/app.config";
 
-const apiUrl = "http://192.168.123.147:8080/api";
 const apiVersion = "/v1";
 
 export const getRoomTypes = async () => {
-  const response = await axios(apiUrl + apiVersion + "/room-types");
+  const response = await axios(config.apiUrl + apiVersion + "/room-types");
   return response.data;
 };

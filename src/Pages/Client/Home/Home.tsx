@@ -1,24 +1,23 @@
 import Landing from "./Landing";
 import About from "./About";
-import BookingContextProvider from "../../../contexts/BookingContext";
 import Location from "./Location";
 import Room from "./Room&Suites";
 import Services from "./Facilities&Services";
 import Footer from "../../../components/Footer";
+import RoomTypeContextProvider from "../../../contexts/roomTypeContext";
 
 const Home = () => {
   return (
     <div>
-      <BookingContextProvider>
-        <section className="max-w-7xl mx-auto flex flex-col items-center">
+      <section className="max-w-7xl mx-auto flex flex-col items-center">
+        <RoomTypeContextProvider>
           <Landing />
-          <About />
-          <Location />
-          <Room />
-          <Services />
-        </section>
-        <Footer />
-      </BookingContextProvider>
+        </RoomTypeContextProvider>
+        <About />
+        <Location />
+        <Room />
+        <Services />
+      </section>
     </div>
   );
 };

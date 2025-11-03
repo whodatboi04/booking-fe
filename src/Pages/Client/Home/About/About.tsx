@@ -5,22 +5,28 @@ const About = () => {
   return (
     <div className="flex flex-col-reverse mt-20 lg:mt-15 p-5 lg:flex-row lg:py-24 gap-8">
       <div className="flex flex-col w-full gap-4 lg:flex-row lg:gap-6 justify-center">
-        <div className="h-[25rem] border-2">
-          <img src={RoomPhoto} className="w-full lg:w-80 h-full" alt="" />
+        <div className="h-[25rem]">
+          <img
+            src={RoomPhoto}
+            className="w-full lg:w-80 h-full rounded-lg"
+            alt=""
+          />
         </div>
         <div className="h-[25rem]">
           <img
             src={RoomPhoto2}
-            className="w-full lg:w-80 h-full lg:mt-16"
+            className="w-full lg:w-80 h-full rounded-lg lg:mt-16"
             alt=""
           />
         </div>
       </div>
       <div className="w-full flex items-center">
         <div className="flex flex-col gap-6">
-          <h3 className="font-light text-2xl text-gray-500">Welcome to</h3>
-          <h1 className="text-5xl">Infinity Hotel</h1>
-          <p className="text-gray-500 text-lg font-light">
+          <h3 className="font-light text-xl text-gray-500 lg:text-2xl">
+            Welcome to
+          </h3>
+          <h1 className="text-3xl lg:text-5xl">Infinity Hotel</h1>
+          <p className="text-gray-500 font-light lg:text-lg">
             Where timeless elegance meets infinite comfort. Nestled in the heart
             of serenity, Infinity Hotel offers a luxurious escape designed to
             awaken your senses and soothe your soul. Whether you're here for a

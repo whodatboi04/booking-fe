@@ -11,9 +11,9 @@ const Location = () => {
             <div className="w-full flex flex-col gap-6 p-6 justify-center">
               <h1 className="text-4xl">Location & Maps</h1>
               <p className="flex items-center gap-2 text-base font-light text-gray-600">
-                <div className="text-2xl">
+                <span className="text-2xl">
                   <IoLocation />
-                </div>
+                </span>
                 Infinity Hotel – Bonifacio Global City, 28th Street corner 5th
                 Avenue Bonifacio Global City, Taguig Metro Manila, Philippines
                 1634

@@ -1,7 +1,6 @@
 import LandingImage from "@/assets/images/front-image.jpg";
 import { IoIosStar } from "react-icons/io";
 import BookingFilter from "../BookingFilter";
-import { Button } from "@heroui/react";
 const Landing = () => {
   return (
     <>
@@ -25,11 +24,6 @@ const Landing = () => {
             <h1 className="text-sm lg:text-2xl">THIS IS INFINITY HOTEL</h1>
             <h1 className="text-3xl lg:text-6xl">THE BEST LUXURY HOTEL</h1>
             <h1 className="text-3xl lg:text-6xl">IN MANILA</h1>
-          </div>
-          <div className="lg:mt-12">
-            <Button className="bg-yuma-300 px-10 text-white" radius="sm">
-              View Rooms
-            </Button>
           </div>
         </div>
         <BookingFilter />
