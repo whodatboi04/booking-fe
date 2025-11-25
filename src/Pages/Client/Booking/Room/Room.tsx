@@ -103,8 +103,8 @@ const Room = () => {
       const roomFilter = roomFilterStr ? JSON.parse(roomFilterStr) : null;
 
       const apiUrl =
-        config.apiUrl +
-        "/v1/room-types?persons=" +
+        config.apiUrlV1 +
+        "/room-types?persons=" +
         roomFilter?.persons +
         `&search=${search}`;
       const response = await axios(apiUrl);
