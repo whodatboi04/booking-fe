@@ -25,6 +25,5 @@ export const useFetch = <T>(url: string, token: string) => {
     };
     fetchData();
   }, [url, token]);
-
   return { data, loading, error };
 };

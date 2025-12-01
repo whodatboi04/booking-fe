@@ -8,7 +8,6 @@ import {
   Spinner,
   getKeyValue,
 } from "@heroui/react";
-import { Failed, Success } from "../Status/status";
 
 type Header = {
   key: string;
@@ -19,9 +18,10 @@ type Props = {
   headers: Header[];
   data: any;
   loading: boolean;
+  renderers?: { [key: string]: (value: any, row?: any) => React.ReactNode };
 };
 
-const dataTable = ({ headers, data, loading }: Props) => {
+const dataTable = ({ headers, data, loading, renderers }: Props) => {
   return (
     <div className="w-full flex flex-col gap-4">
       <Table aria-label="User table">
@@ -41,15 +41,9 @@ const dataTable = ({ headers, data, loading }: Props) => {
             <TableRow key={item?.id}>
               {(columnKey) => (
                 <TableCell>
-                  {columnKey === "status" ? (
-                    item.status === 1 ? (
-                      <Success>Active</Success>
-                    ) : (
-                      <Failed>Inactive</Failed>
-                    )
-                  ) : (
-                    getKeyValue(item, columnKey)
-                  )}
+                  {renderers && renderers[columnKey]
+                    ? renderers[columnKey](item[columnKey], item)
+                    : getKeyValue(item, columnKey)}
                 </TableCell>
               )}
             </TableRow>
