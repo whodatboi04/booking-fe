@@ -48,10 +48,17 @@ type Role = {
   created_at: string;
 };
 
+type Pagination = {
+  current_page: number;
+  per_page: number;
+  total: number;
+};
+
 interface ApiResponse<T> {
   status: number;
   message: string;
   data: T[];
+  pagination: Pagination;
   success: boolean;
 }
 
@@ -68,23 +75,23 @@ const userStatus = [
 const Users: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
   const debounceSearch = useDebounce(searchValue);
-
   const [status, setStatus] = useState("");
-
   const token = Cookies.get("token") || "";
+  const [reload, setReload] = useState(0);
+  const [page, setPage] = useState(1);
 
+  //FETCH DATA
   const users = useFetch<ApiResponse<User>>(
-    `${config.apiUrlAdminV1}/users?search=${debounceSearch}&status=${status}`,
-    token
+    `${config.apiUrlAdminV1}/users?search=${debounceSearch}&status=${status}&page=${page}`,
+    token,
+    reload
   );
-
   const roles = useFetch<ApiResponse<Role>>(
     `${config.apiUrlAdminV1}/roles`,
     token
   );
 
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
+  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -109,7 +116,7 @@ const Users: React.FC = () => {
   const handleRoleSelect = (key: any) => {
     setFormData((prev) => ({
       ...prev,
-      roles: [Number(key.currentKey)], // MUST BE A NUMBER ARRAY
+      roles: [Number(key.currentKey)],
     }));
   };
 
@@ -123,24 +130,39 @@ const Users: React.FC = () => {
   const request = usePost(config.apiUrlAdminV1 + "/users", token);
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    try {
-      await request.makeRequest(formData);
+
+    await request.makeRequest(formData);
+    if (request.error) {
       addToast({
-        title: "Added successfully",
-        description: request?.data.message,
-        color: "success",
-        timeout: 3000,
-        shouldShowTimeoutProgress: true,
-      });
-    } catch (error) {
-      addToast({
-        title: "Failed",
-        description: request.error?.response?.data?.message,
+        title: "Add user failed",
+        description: request.error?.response?.data?.message ?? "Unknown error",
         color: "danger",
         timeout: 3000,
         shouldShowTimeoutProgress: true,
       });
+    } else {
+      addToast({
+        title: "Added successfully",
+        description: request?.data?.message,
+        color: "success",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
     }
+
+    onClose();
+    setReload((prev) => prev + 1);
+    setFormData({
+      username: "",
+      email: "",
+      password: "",
+      password_confirmation: "",
+      roles: [] as number[],
+      firstname: "",
+      lastname: "",
+      phone: "",
+      birthdate: "",
+    });
   };
 
   return (
@@ -161,21 +183,25 @@ const Users: React.FC = () => {
               <FaPlus /> Add User
             </Button>
 
-            {/* FORM */}
             <Modal isOpen={isOpen} onOpenChange={onOpenChange} size="2xl">
               <ModalContent>
                 <form onSubmit={handleSubmit}>
                   <ModalHeader>Add User</ModalHeader>
 
                   <ModalBody>
+                    <h1 className="text-center text-lg font-semibold">
+                      User Account
+                    </h1>
                     <div className="grid grid-cols-[1fr,2fr] gap-4">
                       <Input
                         name="username"
                         label="User Name"
                         onChange={handleChange}
+                        autoComplete="username"
                       />
                       <Input
                         name="email"
+                        autoComplete="email"
                         label="Email"
                         type="email"
                         onChange={handleChange}
@@ -185,12 +211,14 @@ const Users: React.FC = () => {
                     <div className="flex gap-4">
                       <Input
                         name="password"
+                        autoComplete="password"
                         label="Password"
                         type="password"
                         onChange={handleChange}
                       />
                       <Input
                         name="password_confirmation"
+                        autoComplete="password_confirmation"
                         label="Confirm Password"
                         type="password"
                         onChange={handleChange}
@@ -209,15 +237,19 @@ const Users: React.FC = () => {
                     </div>
 
                     <hr />
-
+                    <h1 className="text-center text-lg font-semibold">
+                      User Profile
+                    </h1>
                     <div className="flex gap-4">
                       <Input
                         name="firstname"
+                        autoComplete="firstname"
                         label="First Name"
                         onChange={handleChange}
                       />
                       <Input
                         name="lastname"
+                        autoComplete="lastname"
                         label="Last Name"
                         onChange={handleChange}
                       />
@@ -226,11 +258,13 @@ const Users: React.FC = () => {
                     <div className="flex gap-4">
                       <Input
                         name="phone"
+                        autoComplete="phone"
                         label="Phone Number"
                         onChange={handleChange}
                       />
                       <Input
                         name="birthdate"
+                        autoComplete="birthdate"
                         type="date"
                         label="Birthdate"
                         onChange={(e: any) =>
@@ -251,24 +285,34 @@ const Users: React.FC = () => {
 
                     <Button
                       type="submit"
-                      color="primary"
                       isLoading={request.isLoading}
+                      className="bg-yuma-400 text-white active:bg-yuma-500"
                     >
-                      Save
+                      Add
                     </Button>
                   </ModalFooter>
                 </form>
               </ModalContent>
             </Modal>
           </div>
-
-          <Select
-            label="Filter status"
-            items={userStatus}
-            onSelectionChange={(e: any) => setStatus(e.currentKey)}
-          >
-            {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
-          </Select>
+          <div className="flex gap-4">
+            <Select
+              label="Filter status"
+              items={userStatus}
+              onSelectionChange={(e: any) => setStatus(e.currentKey)}
+              size="sm"
+            >
+              {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
+            </Select>
+            <Select
+              label="Filter role"
+              items={userStatus}
+              onSelectionChange={(e: any) => setStatus(e.currentKey)}
+              size="sm"
+            >
+              {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
+            </Select>
+          </div>
         </div>
       </div>
 
@@ -277,6 +321,9 @@ const Users: React.FC = () => {
         data={users?.data || []}
         loading={users.loading}
         renderers={userStatusRenderer}
+        pages={users?.data?.pagination?.total ?? 0}
+        page={page}
+        onPageChange={(newPage) => setPage(newPage)}
       />
     </div>
   );

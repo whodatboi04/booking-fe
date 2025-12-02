@@ -10,20 +10,20 @@ export default function usePost(url: string, token: string) {
     async (requestData: any) => {
       setIsLoading(true);
       setError(null);
+
       try {
-        console.log(requestData);
         const response = await axios.post(url, requestData, {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
         });
-
         setData(response.data);
       } catch (error: any) {
         setError(error);
+      } finally {
+        setIsLoading(false);
       }
-      setIsLoading(false);
     },
     [url, token]
   );

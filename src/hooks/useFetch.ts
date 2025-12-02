@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-export const useFetch = <T>(url: string, token: string) => {
+export const useFetch = <T>(url: string, token: string, reload = 0) => {
   const [data, setData] = useState<T | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
@@ -24,6 +24,6 @@ export const useFetch = <T>(url: string, token: string) => {
       }
     };
     fetchData();
-  }, [url, token]);
+  }, [url, token, reload]);
   return { data, loading, error };
 };
