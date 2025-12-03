@@ -6,6 +6,11 @@ import { useFetch } from "../../../hooks/useFetch";
 import {
   addToast,
   Button,
+  Chip,
+  Dropdown,
+  DropdownItem,
+  DropdownMenu,
+  DropdownTrigger,
   Input,
   Modal,
   ModalBody,
@@ -19,8 +24,8 @@ import {
 import { FaPlus } from "react-icons/fa";
 import Search from "../../../components/Search";
 import { useDebounce } from "../../../hooks/useDebounce";
-import { Failed, Success } from "../../../components/Status/status";
 import usePost from "../../../hooks/usePost";
+import { TbDotsVertical } from "react-icons/tb";
 
 const headers = [
   { key: "username", header: "USERNAME" },
@@ -29,6 +34,7 @@ const headers = [
   { key: "lastname", header: "LASTNAME" },
   { key: "roles", header: "ROLE" },
   { key: "status", header: "Status" },
+  { key: "actions", header: "Actions" },
 ];
 
 type User = {
@@ -62,15 +68,49 @@ interface ApiResponse<T> {
   success: boolean;
 }
 
-const userStatusRenderer = {
-  status: (value: number) =>
-    value === 1 ? <Success>Active</Success> : <Failed>Inactive</Failed>,
-};
-
 const userStatus = [
   { key: 1, label: "Active" },
   { key: 0, label: "Inactive" },
 ];
+
+const actionDropDownItem = [
+  { key: "edit", label: "Edit" },
+  { key: "delete", label: "Delete" },
+];
+
+// Renderer functions for converting raw user data into table UI components.
+// - 'status' renders Active/Inactive badges.
+// - 'actions' renders Edit/Delete buttons for each row.
+const usersRenderer = {
+  status: (value: number) =>
+    value === 1 ? (
+      <Chip color="success">Active</Chip>
+    ) : (
+      <Chip color="danger">Inactive</Chip>
+    ),
+  actions: (_: any, row: any) => (
+    <Dropdown>
+      <DropdownTrigger className="cursor-pointer">
+        <button>
+          <TbDotsVertical size={18} />
+        </button>
+      </DropdownTrigger>
+      <DropdownMenu aria-label="Static Actions" items={actionDropDownItem}>
+        {(item) => (
+          <DropdownItem key={item.key} textValue={item.label}>
+            <button
+              onClick={() => {
+                console.log(`${item.label} clicked for user ID:`, row.id);
+              }}
+            >
+              {item.label}
+            </button>
+          </DropdownItem>
+        )}
+      </DropdownMenu>
+    </Dropdown>
+  ),
+};
 
 const Users: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -79,10 +119,10 @@ const Users: React.FC = () => {
   const token = Cookies.get("token") || "";
   const [reload, setReload] = useState(0);
   const [page, setPage] = useState(1);
-
+  const [filterRole, setFilterRole] = useState("");
   //FETCH DATA
   const users = useFetch<ApiResponse<User>>(
-    `${config.apiUrlAdminV1}/users?search=${debounceSearch}&status=${status}&page=${page}`,
+    `${config.apiUrlAdminV1}/users?search=${debounceSearch}&status=${status}&role=${filterRole}&page=${page}`,
     token,
     reload
   );
@@ -306,11 +346,11 @@ const Users: React.FC = () => {
             </Select>
             <Select
               label="Filter role"
-              items={userStatus}
-              onSelectionChange={(e: any) => setStatus(e.currentKey)}
+              items={roles?.data?.data || []}
+              onSelectionChange={(e: any) => setFilterRole(e.currentKey)}
               size="sm"
             >
-              {(item) => <SelectItem key={item.key}>{item.label}</SelectItem>}
+              {(item) => <SelectItem key={item.id}>{item.name}</SelectItem>}
             </Select>
           </div>
         </div>
@@ -320,7 +360,7 @@ const Users: React.FC = () => {
         headers={headers}
         data={users?.data || []}
         loading={users.loading}
-        renderers={userStatusRenderer}
+        renderers={usersRenderer}
         pages={users?.data?.pagination?.total ?? 0}
         page={page}
         onPageChange={(newPage) => setPage(newPage)}
