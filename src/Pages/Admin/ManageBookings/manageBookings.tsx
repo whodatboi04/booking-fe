@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import DataTable from "../../../components/DataTable";
 import config from "../../../config/app.config";
 import { useFetch } from "../../../hooks/useFetch";
@@ -93,7 +93,7 @@ const manageBookings = () => {
   const token = Cookies.get("token") || "";
   const [page, setPage] = useState(1);
   const [selectedId, setSelectedId] = useState("");
-  const { isOpen, onOpen, onOpenChange, onClose } = useDisclosure();
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   const [startDate, setStartDate] = useState<RangeValue<DateValue> | null>(
     null
@@ -112,6 +112,8 @@ const manageBookings = () => {
     selectedId ? `${config.apiUrlAdminV1}/bookings/${selectedId}` : "",
     token
   );
+
+  const bookingDetailsData = bookingDetails?.data?.data;
 
   const actionDropDownItem = [
     { key: "view", label: "View" },
@@ -154,6 +156,20 @@ const manageBookings = () => {
       </Dropdown>
     ),
   };
+
+  const bookingDetailsField = bookingDetailsData
+    ? [
+        ["Name", bookingDetailsData.name],
+        ["Room Type", bookingDetailsData.room_type],
+        ["Room Number", bookingDetailsData.room_no],
+        ["Number of Persons", bookingDetailsData.number_of_persons],
+        ["Start Date", bookingDetailsData.start_date],
+        ["End Date", bookingDetailsData.end_date],
+        ["Discount", bookingDetailsData.discount],
+        ["Total Amount", bookingDetailsData.total_amount],
+        ["Booked at", bookingDetailsData.created_at],
+      ]
+    : [];
 
   return (
     <div className="w-full p-28 flex flex-col gap-4">
@@ -207,35 +223,31 @@ const manageBookings = () => {
                 <CircularProgress aria-label="Loading..." color="primary" />
               </div>
             ) : (
-              bookingDetails.data && (
+              bookingDetailsData && (
                 <div className="flex flex-col gap-4">
-                  <div className="flex gap-4">
-                    <Input
-                      isReadOnly
-                      className="max-w-xs"
-                      value={bookingDetails.data?.data.reference_no}
-                      label="Reference Number"
-                    />
-                    <Input
-                      isReadOnly
-                      className="max-w-xs"
-                      value={bookingDetails.data?.data.name}
-                      label="Name"
-                    />
+                  <div className="border-2 border-dashed p-4 flex justify-between items-center">
+                    <div>
+                      <span className="text-sm">Reference Number :</span>
+                      <h1 className="text-2xl font-semibold">
+                        {bookingDetailsData.reference_no}
+                      </h1>
+                    </div>
+                    <span>
+                      {bookingsRender.status(bookingDetailsData.status)}
+                    </span>
                   </div>
-                  <div className="flex gap-4">
-                    <Input
-                      isReadOnly
-                      className="max-w-xs"
-                      value={bookingDetails.data?.data.reference_no}
-                      label="Reference Number"
-                    />
-                    <Input
-                      isReadOnly
-                      className="max-w-xs"
-                      value={bookingDetails.data?.data.name}
-                      label="Name"
-                    />
+                  <div className="flex flex-col gap-2">
+                    <h1 className="text-gray-400">Booking Summary</h1>
+
+                    {bookingDetailsField.map(([label, value]) => (
+                      <div
+                        key={label}
+                        className="flex justify-between font-semibold"
+                      >
+                        <p className="text-gray-500">{label} :</p>
+                        <p>{value}</p>
+                      </div>
+                    ))}
                   </div>
                 </div>
               )
