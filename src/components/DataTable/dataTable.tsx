@@ -29,7 +29,7 @@ const dataTable = ({
   headers,
   data,
   loading,
-  renderers,
+  renderers = {},
   pages = 10,
   page = 1,
   onPageChange,

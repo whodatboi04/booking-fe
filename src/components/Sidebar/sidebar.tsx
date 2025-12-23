@@ -1,9 +1,9 @@
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 import { bottomLinks, sideLinks } from "./sideLinks";
-import { HashLink } from "react-router-hash-link";
 import Logo from "@/assets/images/hotel-logo.svg";
 import { useEffect, useState } from "react";
 import { useMediaQuery } from "../../hooks/useMediaQuery";
+import { NavLink } from "react-router-dom";
 
 const SidebarItems = ({ isOpen }: { isOpen: boolean }) => {
   return (
@@ -11,15 +11,19 @@ const SidebarItems = ({ isOpen }: { isOpen: boolean }) => {
       <ul>
         {sideLinks.map((i) => (
           <li key={i.id} className="p-1">
-            <HashLink
+            <NavLink
               to={i.href}
-              className={`flex items-center ${
-                !isOpen && "justify-center"
-              } gap-2 text-sm px-4 py-3 rounded-lg hover:bg-yuma-400 hover:text-white active:bg-yuma-500 transition`}
+              end={i.href === "/admin"}
+              className={({ isActive }) =>
+                `flex items-center ${!isOpen && "justify-center"} 
+                gap-2 text-sm px-4 py-3 rounded-lg transition
+                hover:bg-yuma-400 hover:text-white
+                ${isActive ? "bg-yuma-500 text-white" : ""}`
+              }
             >
               <span className="text-lg">{i.icon}</span>
               {isOpen && <span>{i.title}</span>}
-            </HashLink>
+            </NavLink>
           </li>
         ))}
       </ul>
@@ -27,15 +31,19 @@ const SidebarItems = ({ isOpen }: { isOpen: boolean }) => {
       <ul className="mt-2">
         {bottomLinks.map((i) => (
           <li key={i.id} className="p-2">
-            <HashLink
+            <NavLink
               to={i.href}
-              className={`flex items-center ${
-                !isOpen && "justify-center"
-              } gap-2 text-sm px-4 py-3 rounded-lg hover:bg-yuma-400 hover:text-white active:bg-yuma-500 transition`}
+              end={i.href === "/admin"}
+              className={({ isActive }) =>
+                `flex items-center ${!isOpen && "justify-center"}
+                gap-2 text-sm px-4 py-3 rounded-lg transition
+                hover:bg-yuma-400 hover:text-white
+                ${isActive ? "bg-yuma-500 text-white" : ""}`
+              }
             >
               <span className="text-lg">{i.icon}</span>
               {isOpen && <span>{i.title}</span>}
-            </HashLink>
+            </NavLink>
           </li>
         ))}
       </ul>
@@ -57,7 +65,7 @@ const sidebar = () => {
   return (
     <>
       <aside
-        className={`h-screen bg-yuma-50 flex flex-col transition-all duration-300 ${
+        className={`h-screen bg-yuma-50 flex flex-col transition-all duration-300  ${
           isOpen ? "min-w-64" : "min-w-20"
         }`}
       >

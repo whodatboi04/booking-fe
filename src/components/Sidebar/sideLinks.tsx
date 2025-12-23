@@ -49,13 +49,13 @@ export const bottomLinks = [
   {
     id: 8,
     title: "Help",
-    href: "#settings",
+    href: "/admin/help",
     icon: <IoMdHelpCircle />,
   },
   {
     id: 9,
     title: "Logout",
-    href: "#settings",
+    href: "/admin/logout",
     icon: <RiLogoutBoxRLine />,
   },
 ];

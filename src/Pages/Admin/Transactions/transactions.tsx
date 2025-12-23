@@ -1,7 +1,5 @@
-import React from "react";
-
 const transactions = () => {
-  return <div>transactions</div>;
+  return <div>hello</div>;
 };
 
 export default transactions;
