@@ -1,4 +1,3 @@
-import React from "react";
 import { FaRegUser } from "react-icons/fa";
 import { IoMdNotificationsOutline } from "react-icons/io";
 import { IoSearchOutline } from "react-icons/io5";
