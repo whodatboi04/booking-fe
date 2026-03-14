@@ -5,6 +5,9 @@ import { Button, Card, CardFooter, Image, Skeleton } from "@heroui/react";
 import { useState, useEffect } from "react";
 import { formatToPeso } from "../../../../helpers/formatToPeso";
 import { getRoomTypes } from "../../../../Services/apiRequest";
+import Room1 from "../../../../assets/images/room-1.jpg";
+import Room2 from "../../../../assets/images/room-2.jpg";
+import Room3 from "../../../../assets/images/room-3.jpg";
 
 const RoomSkeleton = () => {
   return (
@@ -40,22 +43,19 @@ const RoomSkeleton = () => {
 const tempRooms = [
   {
     id: 1,
-    roomImg:
-      "https://i.pinimg.com/1200x/ad/6b/a7/ad6ba7bf5446d0acbc39adb41cbc94c9.jpg",
+    roomImg: Room1,
     name: "Deluxe Room",
     price: "10000",
   },
   {
     id: 2,
-    roomImg:
-      "https://i.pinimg.com/736x/6d/0e/3a/6d0e3ac0335111f16761088900ba5849.jpg",
+    roomImg:Room2,
     name: "Executive",
     price: "25000",
   },
   {
     id: 3,
-    roomImg:
-      "https://i.pinimg.com/1200x/28/87/c7/2887c7d04b90efaa1888d92592cd197e.jpg",
+    roomImg:Room3,
     name: "Deluxe Room",
     price: "20000",
   },
@@ -131,9 +131,8 @@ const Room = () => {
                         <Image
                           alt="Woman listing to music"
                           className="aspect-[8/9] object-cover"
-                          src={
-                            room.room_image ||
-                            "https://heroui.com/images/hero-card.jpeg"
+                          src={ 
+                            room.roomImg || room.roomImg
                           }
                         />
                         <CardFooter className="justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden py-1 absolute before:rounded-xl rounded-lg bottom-1 w-[calc(100%_-_8px)] shadow-sm ml-1 z-10">
